@@ -1,1 +1,16 @@
+mybatis:
+  type-aliases-package: com.example.domain.model
+  mapper-locations: classpath:mappers/*.xml
+  type-handlers-package: com.example.typehandler
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 30
 
+# ?????? ??
+spring:
+  datasource:
+    url: jdbc:mysql://43.200.92.84:3306/mydatabase
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: TESTUSER
+    password: testuser
