@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dore.shop.mapper.MemberMapper">
-    <resultMap id="MemberResultMap" type="com.dore.shop.member.Member">
+<mapper namespace="com.dore.shop.mapper.MemberRepositroy">
+    <resultMap id="MemberResultMap" type="com.dore.shop.member.entity.Member">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
     </resultMap>
@@ -11,4 +11,7 @@
     <select id="getUserById" resultMap="MemberResultMap">
         SELECT * FROM MEMBER WHERE id = #{id}
     </select>
+    <insert id="save">
+        INSERT INTO MEMBER (id, password, name) VALUES (#{id}, #{password}, #{name});
+    </insert>
 </mapper>

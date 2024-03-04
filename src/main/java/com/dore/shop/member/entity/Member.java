@@ -1,11 +1,12 @@
-package com.dore.shop.member;
+package com.dore.shop.member.entity;
 
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
+@Builder
 public class Member {
     private String id;
+    private String password;
     private String name;
 }
