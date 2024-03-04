@@ -14,4 +14,7 @@
     <insert id="save">
         INSERT INTO MEMBER (id, password, name) VALUES (#{id}, #{password}, #{name});
     </insert>
+    <update id="updateMemberInfo" parameterType="member">
+        UPDATE MEMBER SET name = #{name}, email = #{email} WHERE id = #{id}
+    </update>
 </mapper>
