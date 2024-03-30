@@ -11,6 +11,7 @@
     <select id="getUserById" resultMap="MemberResultMap">
         SELECT * FROM MEMBER WHERE id = #{id}
     </select>
+
     <insert id="save">
         INSERT INTO MEMBER (id, password, name) VALUES (#{id}, #{password}, #{name});
     </insert>

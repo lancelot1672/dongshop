@@ -1,7 +1,9 @@
 package com.dore.shop.member.controller;
 
 import com.dore.shop.member.dto.MemberJoinDto;
+import com.dore.shop.member.dto.MemberLoginDto;
 import com.dore.shop.member.service.MemberService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
@@ -27,5 +29,18 @@ public class MemberController {
         memberService.join(memberJoinDto);
 
         return "Join Success";
+    }
+    @PostMapping("/login")
+    public String login(HttpSession httpSession, @RequestBody MemberLoginDto memberLoginDto){
+        log.info(memberLoginDto);
+
+        String login = memberService.login(memberLoginDto);
+
+        if (login.equals("success")){
+            httpSession.setAttribute("loginId",memberLoginDto.getId());
+        }
+
+        // success or fail
+        return login;
     }
 }
