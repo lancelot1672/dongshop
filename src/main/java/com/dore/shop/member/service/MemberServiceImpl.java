@@ -1,6 +1,7 @@
 package com.dore.shop.member.service;
 
 import com.dore.shop.mapper.MemberRepositroy;
+import com.dore.shop.member.dto.MemberInfoRes;
 import com.dore.shop.member.dto.MemberJoinDto;
 import com.dore.shop.member.dto.MemberLoginDto;
 import com.dore.shop.member.entity.Member;
@@ -24,15 +25,27 @@ public class MemberServiceImpl implements MemberService{
         //Mapper 호출을 통해 Save
         memberRepositroy.save(member);
     }
-
     @Override
     public String login(MemberLoginDto memberLoginDto) {
         Optional<Member> omember = memberRepositroy.getUserById(memberLoginDto.getId());
 
         // Password 암호화
-        if (omember.isEmpty() || !omember.get().getPassword().equals(memberLoginDto.getPassword())){
+        if (omember.isEmpty() || !omember.get().getPassword().equals(memberLoginDto.getPassword())) {
             return "fail";
         }
         return "success";
+    }
+    @Override
+    public MemberInfoRes getMemberInfo(String memberId) {
+        Optional<Member> omember = memberRepositroy.getUserById(memberId);
+        // Check Null
+        if( omember.isEmpty()){
+
+        }
+        MemberInfoRes response = MemberInfoRes.builder()
+                .name(omember.get().getName())
+                .build();
+
+        return response;
     }
 }
