@@ -48,12 +48,12 @@ public class MemberController {
     }
 
     @PostMapping(value = "/update")
-    public ResponseEntity<?> getMemberInfo(@RequestBody String memberId){
-        log.info("Member ID : {}", memberId);
+    public ResponseEntity<?> getMemberInfo(@RequestBody MemberLoginDto memberLoginDto){
+        log.info("Member Info : {}", memberLoginDto);
         //Session
 
         //
-        MemberInfoRes memberInfo = memberService.getMemberInfo(memberId);
+        MemberInfoRes memberInfo = memberService.getMemberInfo(memberLoginDto);
         return new ResponseEntity<MemberInfoRes>(memberInfo, HttpStatus.OK);
     }
 }
